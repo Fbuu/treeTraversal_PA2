@@ -11,23 +11,23 @@ class Node
     public:
 
         Node();
+        Node(string wordName);
+        Node(string wordName, Node* _parent);
+
+
         ~Node();
         void setWord(string _word) { word = _word;}
-
-        void setLeftNode( Node* _left) { left = _left;}
-        void setRightNode( Node* _right) { right = _right;}
-        void setParentNode( Node* _parent) { parent = _parent;}
-
-        void setVarList(vector<string> _varList){ varList = _varList;}
-        void setFuncNumberList(vector<string> _funcNumberList){ funcNumberList = _funcNumberList;}
+        void setLeft( Node* _left) { left = _left;}
+        void setRight( Node* _right) { right = _right;}
+        void setParent( Node* _parent) { parent = _parent;}
 
         string getWord(){ return word;}
-        Node* getLeftNode(){ return left;}
-        Node* getRightNode(){ return right;}
-        Node* getParentNode(){ return parent;}
+        Node* getLeft(){ return left;}
+        Node* getRight(){ return right;}
+        Node* getParent(){ return parent;}
 
-        vector<string>& getVarList() { return varList;}
-        vector<string>& getFuncNumberList() { return funcNumberList;}
+        Node* CreateNode(string data);
+        Node* createTree(Node* root, std::string varr);
 
     private:
 
@@ -36,9 +36,6 @@ class Node
         Node* right;
         Node* parent;      
         
-        vector<string> varList;
-        vector<string> funcNumberList;
-
 };
 
 #endif 

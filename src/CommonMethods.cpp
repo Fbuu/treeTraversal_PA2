@@ -36,7 +36,7 @@ namespace STRINGPARSER{
 
 namespace COUTFUNC
 {
-    void coutVector(std::vector<string> vectorr)
+    void coutVector(vector<string> vectorr)
     {
         for(int i = 0 ; i < vectorr.size(); i++)
             cout << vectorr[i] << endl;
@@ -45,7 +45,7 @@ namespace COUTFUNC
 
 namespace COMMONMETHODS
 {
-    void readFile( vector<string> &varr, vector<string> &funcNum)
+    void readFile(vector<string> &varr, vector<string> &funcNum)
     {
         string line;
         string fileName = INPUTFILEPATH + string("names_short2.txt");
@@ -58,26 +58,20 @@ namespace COMMONMETHODS
             while (getline(file,line))
             {
                 if(line.compare("end") == 0){
-                isVarName = false;
-                continue;
+                    isVarName = false;
+                    continue;
                 }
 
                 if(isVarName)
-                varr.push_back(line);
+                    varr.push_back(line);
                 else
                 {
-                if(line.compare("-1") != 0)
-                funcNum.push_back(line);
+                    if(line.compare("-1") != 0)
+                        funcNum.push_back(line);
                 }
 
             }
-            cout << "varr " << endl;
-            COUTFUNC::coutVector(varr);  
-            cout << "funcNum " << endl;
-            COUTFUNC::coutVector(funcNum);
             file.close();
         }
-
-        
     }
 }

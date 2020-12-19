@@ -2,6 +2,7 @@
 #define COMMONMETHODS_H
 
 #include "vector"
+#include "Node.h"
 
 namespace STRINGPARSER
 {
