@@ -33,7 +33,7 @@ Node::~Node()
 {
 }
 
-Node* Node::CreateNode(string data)
+Node* Node::createNode(string data)
 {
     Node* newNode = new Node();
     if (!newNode) {
@@ -48,7 +48,7 @@ Node* Node::CreateNode(string data)
 Node* Node::createTree(Node* root, string varr)
 {
     if (root == NULL) {
-        root = CreateNode(varr);
+        root = createNode(varr);
         root->parent = NULL;
         return root;
     }
@@ -63,7 +63,7 @@ Node* Node::createTree(Node* root, string varr)
         if (temp->left != NULL)
             q.push(temp->left);
         else {
-            temp->left = CreateNode(varr);
+            temp->left = createNode(varr);
             temp->left->parent = temp;
             return root;
         }
@@ -71,7 +71,7 @@ Node* Node::createTree(Node* root, string varr)
         if (temp->right != NULL)
             q.push(temp->right);
         else {
-            temp->right = CreateNode(varr);
+            temp->right = createNode(varr);
             temp->right->parent = temp;
             return root;
         }
@@ -79,3 +79,51 @@ Node* Node::createTree(Node* root, string varr)
     return NULL;
 }
 
+void Node::preOrderTraverse(Node* node)
+{
+    if(node != NULL){
+        cout << node->word << endl;
+        preOrderTraverse(node->left);
+        preOrderTraverse(node->right);
+    }
+    else
+        return;
+}
+
+void Node::postOrderTraverse(Node* node)
+{
+    if(node != NULL){
+        postOrderTraverse(node->left);
+        postOrderTraverse(node->right);
+        cout << node->word << endl;
+    }
+    else
+        return;
+}
+
+void Node::inOrderTraverse(Node* node)
+{
+    if(node != NULL){
+        inOrderTraverse(node->left);
+        cout << node->word << endl;
+        inOrderTraverse(node->right);
+    }
+    return;
+}
+
+void Node::findLeafNode(Node* node)
+{
+    if(node != NULL){
+        if(!(node->left) && !(node->right))
+        {
+            cout << node->word << endl;
+            return;
+        }
+        else
+        { 
+            findLeafNode(node->left);
+            findLeafNode(node->right);
+        }
+    }
+    return;
+}

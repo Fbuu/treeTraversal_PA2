@@ -26,8 +26,14 @@ class Node
         Node* getRight(){ return right;}
         Node* getParent(){ return parent;}
 
-        Node* CreateNode(string data);
+        Node* createNode(string data);
         Node* createTree(Node* root, std::string varr);
+
+        void preOrderTraverse(Node* node);
+        void postOrderTraverse(Node* node);
+        void inOrderTraverse(Node* node);
+        void findLeafNode(Node* node);
+
 
     private:
 

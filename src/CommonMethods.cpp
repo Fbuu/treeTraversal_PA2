@@ -41,6 +41,32 @@ namespace COUTFUNC
         for(int i = 0 ; i < vectorr.size(); i++)
             cout << vectorr[i] << endl;
     }
+    void coutTreeTraverse(vector<string> vec, Node* tree)
+    {
+        for(int i = 0 ; i < vec.size(); i++)
+        {
+            cout << "*****" << endl;
+            int num = stoi(vec[i]);
+            switch (num)
+            {
+            case 1:
+                tree->preOrderTraverse(tree);
+                break;
+            case 2:
+                tree->postOrderTraverse(tree);
+                break;
+            case 3:
+                tree->inOrderTraverse(tree);
+                break;
+            case 4:
+                tree->findLeafNode(tree);
+                break;
+            default:
+                break;
+            }
+        }
+        cout << "Done!" << endl;
+    }
 }
 
 namespace COMMONMETHODS

@@ -6,14 +6,6 @@
 #include "include/Node.h"
 using namespace std;
 
-/* struct node{
-
-    string word;
-    node* left;
-    node* right;
-    node* father;
-}; */
-
 int main () {
 
     cout << "Hello, main!" << endl;
@@ -30,9 +22,9 @@ int main () {
 
     Node* tree = NULL;
     for(int i = 0; i < varList.size(); ++i)
-    {
         tree = tree->createTree(tree,varList[i]);
-    }
-    
+
+    COUTFUNC::coutTreeTraverse(funcNumberList,tree);
+
     return 0;
 }

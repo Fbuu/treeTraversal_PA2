@@ -12,6 +12,7 @@ namespace STRINGPARSER
 namespace COUTFUNC
 {
     void coutVector(std::vector<std::string> vectorr);
+    void coutTreeTraverse(std::vector<std::string> vec, Node* tree);
 }
 
 namespace COMMONMETHODS
