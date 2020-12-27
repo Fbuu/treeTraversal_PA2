@@ -4,6 +4,9 @@
 #include "vector"
 #include "string"
 #include <fstream>
+#include <dirent.h>
+#include <cstring>
+#include <windows.h>
 
 using namespace std;
 
@@ -30,6 +33,36 @@ namespace STRINGPARSER{
                 funcNum.push_back(token);
             
             line.erase(0, pos + delimiter.length());
+        }
+    }
+
+    void readFile(vector<string> &varr, vector<string> &funcNum)
+    {
+        string line;
+        string fileName = INPUTFILEPATH + string("names_short2.txt");
+        ifstream file(fileName);
+
+        bool isVarName = true;
+
+        if (file.is_open())
+        {
+            while (getline(file,line))
+            {
+                if(line.compare("end") == 0){
+                    isVarName = false;
+                    continue;
+                }
+
+                if(isVarName)
+                    varr.push_back(line);
+                else
+                {
+                    if(line.compare("-1") != 0)
+                        funcNum.push_back(line);
+                }
+
+            }
+            file.close();
         }
     }
 }
@@ -69,35 +102,55 @@ namespace COUTFUNC
     }
 }
 
-namespace COMMONMETHODS
+namespace COMMONFILEMETHODS
 {
-    void readFile(vector<string> &varr, vector<string> &funcNum)
+    void filesInDirectory(vector<string> &files)
     {
-        string line;
-        string fileName = INPUTFILEPATH + string("names_short2.txt");
-        ifstream file(fileName);
-
-        bool isVarName = true;
-
-        if (file.is_open())
-        {
-            while (getline(file,line))
-            {
-                if(line.compare("end") == 0){
-                    isVarName = false;
-                    continue;
-                }
-
-                if(isVarName)
-                    varr.push_back(line);
-                else
+        DIR *dir; 
+        struct dirent *diread;
+        //vector<string> files;
+        if((dir = opendir(INPUTFILEPATH)) != NULL){
+            while(diread = readdir(dir)){
+                if( strcmp(diread->d_name, ".") != 0 && strcmp(diread->d_name, "..") != 0 )
                 {
-                    if(line.compare("-1") != 0)
-                        funcNum.push_back(line);
+                    const string name = diread->d_name;
+                    files.push_back(name);
                 }
-
             }
-            file.close();
+            closedir(dir);
         }
+        else{
+            cout << "Directory is not found! " << endl;
+        }
+    }
+
+    void createDirectory(string dirPath)
+    {
+        const char* dirP = dirPath.c_str();
+        if (CreateDirectory(dirP, NULL))
+        {
+            cout << "Created succesfully directory!" << endl;
+        }
+        else if (ERROR_ALREADY_EXISTS == GetLastError())
+        {
+            cout << "Directory already exists" << endl;
+        }
+        else
+        {
+            cout << "Failed for some other reason" << endl;
+        }
+    }
+
+    void writeFile(string fileName, vector<string> text)
+    {
+        if( remove(fileName.c_str()) == 0){
+            ofstream outfile;
+            outfile.open(fileName, std::ios_base::app); // append instead of overwrite
+            for(int i = 0; i < text.size(); ++i)
+                outfile << text[i]; 
+        }
+        else
+            cout<<"\nErorr Occurred!";
+        
     }
 }

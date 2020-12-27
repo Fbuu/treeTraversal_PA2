@@ -4,6 +4,7 @@
 
 #include "include/CommonMethods.h"
 #include "include/Node.h"
+#include "include/Enums.h"
 using namespace std;
 
 int main () {
@@ -13,7 +14,7 @@ int main () {
     vector<string> varList;
     vector<string> funcNumberList;
 
-    COMMONMETHODS::readFile(varList,funcNumberList);
+    STRINGPARSER::readFile(varList,funcNumberList);
 
     cout << "varr " << endl;
     COUTFUNC::coutVector(varList);
@@ -25,6 +26,13 @@ int main () {
         tree = tree->createTree(tree,varList[i]);
 
     COUTFUNC::coutTreeTraverse(funcNumberList,tree);
+
+    vector<string> files;
+    COMMONFILEMETHODS::filesInDirectory(files);
+    COMMONFILEMETHODS::createDirectory(OUTPUTFILEPATH);
+
+    string outputFileName = OUTPUTFILEPATH + files[1] ;
+    COMMONFILEMETHODS::writeFile(outputFileName, tree->getVector());
 
     return 0;
 }

@@ -4,20 +4,26 @@
 #include "vector"
 #include "Node.h"
 
+using namespace std;
+
 namespace STRINGPARSER
 {
-    void parserByWS(std::string line, std::vector<std::string> &varr, std::vector<std::string> &funcNum);
+    void parserByWS(string line, vector<string> &varr, vector<string> &funcNum);
+    void readFile(vector<string> &varr, vector<string> &funcNum);
+
 }
 
 namespace COUTFUNC
 {
-    void coutVector(std::vector<std::string> vectorr);
-    void coutTreeTraverse(std::vector<std::string> vec, Node* tree);
+    void coutVector(vector<string> vectorr);
+    void coutTreeTraverse(vector<string> vec, Node* tree);
 }
 
-namespace COMMONMETHODS
+namespace COMMONFILEMETHODS
 {
-    void readFile(std::vector<std::string> &varr, std::vector<std::string> &funcNum);
+    void filesInDirectory(vector<string> &files);
+    void createDirectory(string dirPath);
+    void writeFile(string fileName, vector<string> text);
 }
 
 #endif 

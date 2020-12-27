@@ -82,7 +82,9 @@ Node* Node::createTree(Node* root, string varr)
 void Node::preOrderTraverse(Node* node)
 {
     if(node != NULL){
-        cout << node->word << endl;
+        //cout << node->word << endl;
+        textVector.push_back(node->word);
+        textVector.push_back("\n");
         preOrderTraverse(node->left);
         preOrderTraverse(node->right);
     }
@@ -95,7 +97,9 @@ void Node::postOrderTraverse(Node* node)
     if(node != NULL){
         postOrderTraverse(node->left);
         postOrderTraverse(node->right);
-        cout << node->word << endl;
+        //cout << node->word << endl;
+        textVector.push_back(node->word);
+        textVector.push_back("\n");
     }
     else
         return;
@@ -105,7 +109,9 @@ void Node::inOrderTraverse(Node* node)
 {
     if(node != NULL){
         inOrderTraverse(node->left);
-        cout << node->word << endl;
+        //cout << node->word << endl;
+        textVector.push_back(node->word);
+        textVector.push_back("\n");
         inOrderTraverse(node->right);
     }
     return;
@@ -116,7 +122,9 @@ void Node::findLeafNode(Node* node)
     if(node != NULL){
         if(!(node->left) && !(node->right))
         {
-            cout << node->word << endl;
+            //cout << node->word << endl;
+            textVector.push_back(node->word);
+            textVector.push_back("\n");
             return;
         }
         else

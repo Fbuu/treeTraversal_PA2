@@ -26,8 +26,11 @@ class Node
         Node* getRight(){ return right;}
         Node* getParent(){ return parent;}
 
+        vector<string> getVector(){ return textVector;}
+
         Node* createNode(string data);
         Node* createTree(Node* root, std::string varr);
+        void vectorClear(){ textVector.clear(); }
 
         void preOrderTraverse(Node* node);
         void postOrderTraverse(Node* node);
@@ -40,7 +43,8 @@ class Node
         string word;
         Node* left;
         Node* right;
-        Node* parent;      
+        Node* parent;  
+        vector<string> textVector;    
         
 };
 
